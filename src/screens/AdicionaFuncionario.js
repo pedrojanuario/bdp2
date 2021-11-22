@@ -7,6 +7,7 @@ import { BACKEND } from '../constants'
 function AdicionaFuncionario({ navigation, theme }) {
     const [nome, setNome] = useState('')
     const [status, setStatus] = useState(true)
+    const [statusd, setStatusd] = useState(false)
     const [erros, setErros] = useState({})
     const [aviso, setAviso] = useState('')
     const [salvandoFuncionario, setsalvandoFuncionario] = useState(false)
@@ -54,10 +55,10 @@ function AdicionaFuncionario({ navigation, theme }) {
     return (
 
 
-        <View style={{ flex: 1, backgroundColor: colors.surface }}>
+        <View style={{ flex: 3, backgroundColor: colors.surface }}>
             <Header titulo="Cadastro de Funcionarios"
                 voltar={true} navigation={navigation} />
-            <Caption> Funcionarios </Caption>
+            <Caption> </Caption>
             <TextInput
                 label="Nome do funcionario"
                 mode="outlined"
@@ -65,6 +66,23 @@ function AdicionaFuncionario({ navigation, theme }) {
                 value={nome}
                 onChange={setNome}
                 error={!!erros.nome}
+            />
+            <TextInput
+                label=" Idade"
+                mode="outlined"
+                name="idade"
+                keyboardType='numeric'
+            />
+            <TextInput
+                label="Cargo"
+                mode="outlined"
+                name="cargo"
+            />
+            <TextInput
+                label="Salario"
+                mode="outlined"
+                name="salario"
+                keyboardType='numeric'
             />
             <HelperText tpye="error" visible={!!erros.nome}>
                 {erros.nome}
@@ -75,6 +93,12 @@ function AdicionaFuncionario({ navigation, theme }) {
                     onPress={() => setStatus(!status)}
                 />
                 <Text style={{ color: colors.Text, marginTop: 8 }}>Proprio</Text>
+            </View>
+            <View style={styles.checkbox}>
+                <Checkbox status={statusd ? 'checked' : 'unchecked'}
+                    onPress={() => setStatusd(!statusd)}
+                />
+                <Text style={{ color: colors.Text, marginTop: 8 }}>Terceirizado</Text>
             </View>
             <FAB style={styles.fab}
                 icon='content-save'
